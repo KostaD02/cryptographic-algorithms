@@ -61,16 +61,16 @@ function vernamDecrypt(encryptedText = "", key = "") {
 }
 
 function vernamMain() {
-  console.log(`Vernam Cipher Test Cases (${TEST_CASES.length} test)\n`);
+  console.info(`Vernam Cipher Test Cases (${TEST_CASES.length} test)\n`);
   TEST_CASES.forEach(({ text, key }) => {
     try {
-      console.log(`Original: ${text}`);
-      console.log(`Key: ${key}`);
+      console.info(`Original: ${text}`);
+      console.info(`Key: ${key}`);
       const encryptedText = vernamEncrypt(text, key);
-      console.log(`Encrypted: ${encryptedText}`);
+      console.info(`Encrypted: ${encryptedText}`);
 
       const decryptedText = vernamDecrypt(encryptedText, key);
-      console.log(`Decrypted: ${decryptedText}`);
+      console.info(`Decrypted: ${decryptedText}`);
 
       if (decryptedText !== text) {
         throw new Error(
@@ -78,7 +78,7 @@ function vernamMain() {
         );
       }
 
-      console.log(`Decryption successful, encryption matches decryption.\n`);
+      console.info(`Decryption successful, encryption matches decryption.\n`);
     } catch (error) {
       console.error(`Error: ${error.message}\n`);
     }
