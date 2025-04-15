@@ -1,4 +1,24 @@
-const GEORGIAN_ALPHABET = "აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ";
+const GEORGIAN_ALPHABET = {
+  alphabet: "აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ",
+
+  getIndex(char = "") {
+    const index = this.alphabet.indexOf(char);
+    if (index === -1) {
+      throw new Error(`Character "${char}" is not in the Georgian alphabet`);
+    }
+    return index;
+  },
+
+  getChar(index = -1) {
+    if (index < 0 || index >= this.alphabet.length) {
+      throw new Error(
+        `Index ${index} is out of bounds for the Georgian alphabet`
+      );
+    }
+    return this.alphabet[index];
+  },
+};
+
 const TEST_CASES = [
   {
     text: "გამარჯობა",
@@ -10,25 +30,11 @@ const TEST_CASES = [
   },
 ];
 
-function getGeorgianIndex(char = "") {
-  const index = GEORGIAN_ALPHABET.indexOf(char);
-  if (index === -1) {
-    throw new Error(`Character "${char}" is not in the Georgian alphabet`);
-  }
-  return index;
-}
-
-function getGeorgianChar(index = -1) {
-  const length = GEORGIAN_ALPHABET.length;
-  if (index < 0 || index >= length) {
-    throw new Error(
-      `Index ${index} is out of bounds for the Georgian alphabet`
-    );
-  }
-  return GEORGIAN_ALPHABET[index];
-}
-
-function vernamEncrypt(text = "", key = "") {
+function vernamEncrypt(
+  text = "",
+  key = "",
+  georgianAlphabet = GEORGIAN_ALPHABET
+) {
   if (typeof text !== "string" || typeof key !== "string") {
     throw new Error("Both text and key must be strings");
   }
@@ -41,28 +47,36 @@ function vernamEncrypt(text = "", key = "") {
     throw new Error("Text and key must be of the same length");
   }
 
-  const length = GEORGIAN_ALPHABET.length;
+  const length = georgianAlphabet.alphabet.length;
   let encryptedText = "";
 
   for (let i = 0; i < text.length; i++) {
-    const textIndex = getGeorgianIndex(text[i]);
-    const keyIndex = getGeorgianIndex(key[i]);
+    const textIndex = georgianAlphabet.getIndex(text[i]);
+    const keyIndex = georgianAlphabet.getIndex(key[i]);
 
     const encryptedIndex = (textIndex ^ keyIndex) % length;
 
-    encryptedText += getGeorgianChar(encryptedIndex);
+    encryptedText += georgianAlphabet.getChar(encryptedIndex);
   }
 
   return encryptedText;
 }
 
-function vernamDecrypt(encryptedText = "", key = "") {
-  return vernamEncrypt(encryptedText, key);
+function vernamDecrypt(
+  encryptedText = "",
+  key = "",
+  georgianAlphabet = GEORGIAN_ALPHABET
+) {
+  return vernamEncrypt(encryptedText, key, georgianAlphabet);
 }
 
-function vernamMain() {
-  console.info(`Vernam Cipher Test Cases (${TEST_CASES.length} test)\n`);
-  TEST_CASES.forEach(({ text, key }) => {
+function vernamMain(cases = TEST_CASES) {
+  if (cases.length === 0) {
+    console.warn("No test cases provided");
+    return;
+  }
+  console.info(`Vernam Cipher Test Cases (${cases.length} test)\n`);
+  cases.forEach(({ text, key }) => {
     try {
       console.info(`Original: ${text}`);
       console.info(`Key: ${key}`);
@@ -85,4 +99,4 @@ function vernamMain() {
   });
 }
 
-vernamMain();
+vernamMain(TEST_CASES);
