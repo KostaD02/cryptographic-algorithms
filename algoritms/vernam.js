@@ -33,6 +33,10 @@ function vernamEncrypt(text = "", key = "") {
     throw new Error("Both text and key must be strings");
   }
 
+  if (text.length === 0 || key.length === 0) {
+    throw new Error("Text and key cannot be empty");
+  }
+
   if (text.length !== key.length) {
     throw new Error("Text and key must be of the same length");
   }
@@ -56,7 +60,8 @@ function vernamDecrypt(encryptedText = "", key = "") {
   return vernamEncrypt(encryptedText, key);
 }
 
-function main() {
+function vernamMain() {
+  console.log(`Vernam Cipher Test Cases (${TEST_CASES.length} test)\n`);
   TEST_CASES.forEach(({ text, key }) => {
     try {
       console.log(`Original: ${text}`);
@@ -80,4 +85,4 @@ function main() {
   });
 }
 
-main();
+vernamMain();

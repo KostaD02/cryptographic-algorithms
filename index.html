@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptographic algorithms K.D</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <main class="container-xxl">
+      <h1 class="mt-3">Cryptographic algorithms</h1>
+      <hr />
+      <section class="mb-3">
+        <h2 class="mb-3">Vernam algorithm</h2>
+        <form id="vernam">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="text"
+              id="vernamText"
+              placeholder="Text"
+            />
+            <label for="vernamText">Text</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="key"
+              id="vernamKey"
+              placeholder="Key"
+            />
+            <label for="vernamKey">Key</label>
+          </div>
+          <button class="btn btn-primary mb-3" type="submit">Encrypt</button>
+          <div class="border rounded shadow-sm p-4" id="vernamResult">
+            <p class="m-0">Waiting</p>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="./algoritms/vernam.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
