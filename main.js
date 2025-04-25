@@ -92,9 +92,18 @@ frequencyGuessesControl.addEventListener("change", (event) => {
   const originalChar = target.getAttribute("data-char");
   const guessedChar = target.value;
 
-  if (guessedChar.length === "") {
+  if (guessedChar.length === 0) {
     adjustFrequencyGuessError(false);
     target.value = "";
+    const originalChars = document.querySelectorAll(
+      `span[data-original-char='${originalChar}']`
+    );
+    originalChars.forEach((item) => {
+      item.innerText = originalChar;
+      item.removeAttribute("data-modified");
+      item.removeAttribute("data-new-char");
+      item.classList.remove("fw-bold");
+    });
     return;
   }
 
