@@ -201,8 +201,6 @@ personalForm.addEventListener("submit", (event) => {
 
   try {
     clearMatrixVisualization();
-
-    // Encryption steps
     const salt = generateSalt(5);
     const payload = salt + text;
     const chars = Array.from(payload);

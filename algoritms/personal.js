@@ -133,7 +133,8 @@ function unpulseGrid(grid = [], key = "") {
 }
 
 function generateSalt(length = 5) {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ!@#$%^&";
   let salt = "";
   for (let i = 0; i < length; i++) {
     salt += chars[Math.floor(Math.random() * chars.length)];
