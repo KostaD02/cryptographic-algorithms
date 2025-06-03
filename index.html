@@ -33,6 +33,41 @@
       property="twitter:image"
       content="https://konstantinedatunishvili.com/assets/images/logo_500x500.png"
     />
+    <style>
+      .matrix {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .matrix-block {
+        width: fit-content;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 8px;
+      }
+
+      .matrix-block h4 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .matrix-table {
+        border-collapse: collapse;
+        margin: auto;
+      }
+
+      .matrix-table td {
+        border: 1px solid #aaa;
+        padding: 6px 10px;
+        text-align: center;
+        font-family: monospace;
+        background: #fff;
+      }
+    </style>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -154,9 +189,41 @@
           role="alert"
         ></div>
       </section>
+      <section class="mb-3">
+        <h2 class="mb-3">Personal Cipher</h2>
+        <form id="personal">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="text"
+              id="personalText"
+              placeholder="Text"
+            />
+            <label for="personalText">Text</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="key"
+              id="personalKey"
+              placeholder="Key"
+            />
+            <label for="personalKey">Key</label>
+          </div>
+          <button class="btn btn-primary mb-3" type="submit">Encrypt</button>
+          <div class="border rounded shadow-sm p-4" id="personalResult">
+            <p class="m-0">Waiting</p>
+          </div>
+        </form>
+        <h3 class="mb-3 mt-3">Matrix visualization</h3>
+        <div class="matrix" id="personalMatrix"></div>
+      </section>
     </main>
     <script src="./algoritms/vernam.js"></script>
     <script src="./algoritms/frequency.js"></script>
+    <script src="./algoritms/personal.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>

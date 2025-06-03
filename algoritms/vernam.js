@@ -71,6 +71,7 @@ function vernamDecrypt(
 }
 
 function vernamMain(cases = TEST_CASES) {
+  console.log("==================================================");
   if (cases.length === 0) {
     console.warn("No test cases provided");
     return;
